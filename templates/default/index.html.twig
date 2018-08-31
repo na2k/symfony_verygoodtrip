@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+<h1>Very Good Trip</h1>
+<!-- moteur de recherche -->
+<div>
+  <form  method="post">
+    <select name="country">
+      <option value="0">Choisir une destination</option>
+      {% for country in countries %}
+      <option value="{{country.id}}">{{country.name}}</option>
+      {% endfor %}
+    </select>
+    <button class="btn btn-primary btn-sm">Rechercher</button>
+  </form>
+</div>
+
+<!-- réponse au formulaire de recherche: affichage des voyages -->
+<div class="">
+  {% if trips %}
+  <table class="table table-bordered table-striped">
+
+    {% for trip in trips %}
+    <tr>
+      <td>{{trip.title}}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  {% if trips | length > 0%}
+  {% else %}
+  <span>Aucun voyage trouvé</span>
+  {% endif %}
+  {% endif %}
+</div>
+{% endblock %}
